@@ -24,14 +24,20 @@ public class ObjectPooler : MonoBehaviour
 
             foreach(PoolObject poolObj in pool.poolObjects)
             {
-
-                GameObject currentPrefab = Instantiate();
+                for (int i = 0; i < poolObj.maxAmount; i++)
+                {
+                    GameObject currentPrefab = Instantiate(poolObj.prefab, pool.poolContent, Quaternion.identity);
+                    currentPrefab.localPosition = Vector3.zero;
+                    currentPrefab.localRotation = Quaternion.Euler(0,0,0);
+                    currentPrefab.SetActive(false);
+                }
             }
         }
     }
 
     void CreatePoolObject(GameObject targetObj, Vector3 targetPos, Vector3 targetRot, float sizeMultiply)
     {
+        
         targetObj.SetActive(true);
     }
 
