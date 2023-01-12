@@ -36,7 +36,12 @@ public class ObstacleGenerator : MonoBehaviour
     {
         if (follow == null) return;
 
-
+        if (transform.position.z > lastGenerationPos.z + nextGenerationDistance || transform.position.z < lastGenerationPos.z - nextGenerationDistance)
+            GenerateRandomObstacle();
+        if (transform.position.y > lastGenerationPos.y + nextGenerationDistance || transform.position.y < lastGenerationPos.y - nextGenerationDistance)
+            GenerateRandomObstacle();
+        if (transform.position.x > lastGenerationPos.x + nextGenerationDistance || transform.position.x < lastGenerationPos.x - nextGenerationDistance)
+            GenerateRandomObstacle();
     }
 
     void GenerateRandomObstacle()
@@ -45,4 +50,6 @@ public class ObstacleGenerator : MonoBehaviour
     }
 
     void SetNextGenerationDistance() => nextGenerationDistance = Random.Range(nextGenerationDistanceRange.x, nextGenerationDistanceRange.y);
+
+    void SetLastGenerationDistance() => lastGenerationPos = transform.position;
 }
